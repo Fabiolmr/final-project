@@ -5,7 +5,7 @@ import { getActiveResourcesInfo } from "node:process";
 
 export class AuthService{
 
-    async create(email: string, senha: string){
+    async create(nome: string, email: string, senha: string){
         //se já existe no BD
         const existeUser = await prisma.user.findUnique({ /*findUnique é fornecido pelo prisma*/
             where: {email}
@@ -21,6 +21,7 @@ export class AuthService{
         const senhaHashed = await bcrypt.hash(senha, 10);
         
         const dados = {
+            nome,
             email,
             senha: senhaHashed
         }
@@ -33,6 +34,7 @@ export class AuthService{
         //mandar para algo que o front deve usar no futuro
         return {
             id: user.id,
+            nome: user.nome,
             email: user.email
         }
     }

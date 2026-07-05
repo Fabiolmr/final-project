@@ -9,4 +9,5 @@ router.post("/create",authController.create);
 router.post("/login", authController.login);
 router.post("/logout",authController.logout);
 
+
 export {router as authRoutes};

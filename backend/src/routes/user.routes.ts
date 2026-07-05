@@ -8,5 +8,6 @@ const userController = new UserController();
 
 router.put("/update", authMidleware, userController.update);
 router.delete("/delete", authMidleware, userController.delete);
+router.get('/busca', authMidleware, userController.busca);
 
 export {router as userRoutes};

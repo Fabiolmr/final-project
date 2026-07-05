@@ -47,4 +47,24 @@ export class UserController{
             })
         }
     }
+
+    async busca(req:Request, res: Response){
+        try{
+            const userPayload = res.locals.user as AuthPayload;
+            const id = userPayload.id;
+
+            const dados = await userService.busca(id);
+
+            res.status(200).json(dados);
+        }
+        catch(error){
+            res.status(400).json({
+                message:
+                    error instanceof Error
+                   ? error.message
+                   : "Erro",
+            })
+        }
+
+    }
 }

@@ -64,4 +64,16 @@ export class UserService{
             where: {id}
         });
     }
+
+
+    async busca(id: number){
+        const user = await prisma.user.findUnique({where: {id}})
+
+        const dados = {
+            //colocar nome
+            email: user?.email
+        }
+
+        return dados
+    }
 }
