@@ -1,4 +1,4 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { UserService } from "../services/user.services";
 import { AuthPayload } from "../tipos/auth.payload";
 
@@ -28,6 +28,23 @@ export class UserController{
     }
 
     async delete(req: Request, res: Response){
-        
+        try{
+            const userPayload = res.locals.user as AuthPayload;
+            const id = userPayload.id;
+
+            const { senha } = req.body;
+
+            await userService.delete(id, senha);
+
+            res.status(200).send();
+        }
+        catch(error){
+            res.status(400).json({
+                message:
+                    error instanceof Error
+                   ? error.message
+                   : "Erro",
+            })
+        }
     }
 }

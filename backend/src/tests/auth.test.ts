@@ -42,12 +42,4 @@ describe('Testes de Autenticação (Cadastro, Login e Logout)', () => {
     expect(cookieDeSessao).toBeDefined();
   });
 
-//   it('3. Deve acessar uma rota protegida usando o cookie', async () => {
-//     const resposta = await request(app)
-//       .get('/auth/perfil') // Coloque aqui alguma rota sua que use o authMiddleware
-//       .set('Cookie', cookieDeSessao); // Enviando o cookie igual o navegador faria
-
-//     expect(resposta.status).toBe(200);
-//   });
-
 });

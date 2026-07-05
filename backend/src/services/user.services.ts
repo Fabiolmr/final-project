@@ -40,4 +40,28 @@ export class UserService{
             data: novosDados,
         })
     }
+
+
+    async delete(id: number, senha: string){
+
+        const existeUser =  await prisma.user.findUnique({
+            where: {id}
+        })
+
+        if(!existeUser){
+            throw new Error(
+                "usuario não existe"
+            )
+        }
+
+        const senhaMatch = await bcrypt.compare(senha, existeUser.senha)
+
+        if(!senhaMatch){
+            throw new Error("Senha incorreta")
+        }        
+
+        await prisma.user.delete({
+            where: {id}
+        });
+    }
 }
