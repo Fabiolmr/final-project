@@ -3,16 +3,14 @@ import bcrypt from "bcrypt"
 
 export class UserService{
 
-    async update(id: number, dados: {email?:string, novaSenha?: string, senhaAtual: string}){
+    async update(id: number, dados: {nome?:string, email?:string, novaSenha?: string, senhaAtual: string}){
         
         const existeUser =  await prisma.user.findUnique({
             where: {id}
         })
 
         if(!existeUser){
-            throw new Error(
-                "usuario não existe"
-            )
+            throw new Error("usuario não existe")
         }
 
         const senhaMatch = await bcrypt.compare(dados.senhaAtual, existeUser.senha);
@@ -22,6 +20,10 @@ export class UserService{
         }
 
         const novosDados: any = {}
+
+        if(dados.nome){
+            novosDados.nome = dados.nome;
+        }
 
         if(dados.email){
             novosDados.email = dados.email;
@@ -67,13 +69,18 @@ export class UserService{
 
 
     async busca(id: number){
-        const user = await prisma.user.findUnique({where: {id}})
+        const user = await prisma.user.findUnique({
+            where: {id},
+            select: {
+                nome: true,
+                email: true
+            }
+        })
 
-        const dados = {
-            //colocar nome
-            email: user?.email
+        if(!user){
+            throw new Error("Usuário não encontrado");
         }
 
-        return dados
+        return user
     }
 }

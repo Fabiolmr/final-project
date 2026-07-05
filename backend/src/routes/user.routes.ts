@@ -11,3 +11,9 @@ router.delete("/delete", authMidleware, userController.delete);
 router.get('/busca', authMidleware, userController.busca);
 
 export {router as userRoutes};
+
+
+/* Aqui fica as rotas de autenticação
+    Todas elas tem que passar pelo MidleWare para validar
+    se o usário está autenticado
+*/
