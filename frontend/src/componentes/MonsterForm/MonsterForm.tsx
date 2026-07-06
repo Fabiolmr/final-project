@@ -13,17 +13,19 @@ interface Props {
 export default function MonsterForm({ monstro }: Props) {
     const router = useRouter();
 
-    const [titulo, setTitulo] = useState(monstro?.titulo ?? "");
-    const [imagem, setImagem] = useState(monstro?.imagem ?? "");
-    const [nota, setNota] = useState(monstro?.nota ?? 0);
+    const [name, setName] = useState(monstro?.name ?? "");
+    const [size, setSize] = useState(monstro?.size ?? "Medium");
+    const [type, setType] = useState(monstro?.type ?? "Humanoid");
+    const [hitPoints, setHitPoints] = useState(monstro?.hit_points ?? 10);
    
     async function handleSubmit(e: React.SyntheticEvent) {
         e.preventDefault();
 
         const payload = {
-            titulo,
-            imagem,
-            nota,
+            name,
+            size,
+            type,
+            hit_points: Number(hitPoints),
         };
 
         if (monstro) {
@@ -39,31 +41,46 @@ export default function MonsterForm({ monstro }: Props) {
     return (
         <form onSubmit={handleSubmit} className="monster-form">
             <h1>
-                {monstro ? "Enfrentar Monstro" : "Novo Monstro"}
+                {monstro ? "Editar Monstro" : "Novo Monstro"}
             </h1>
             
             <div className="form-input">
+                <label>Nome:</label>
                 <input
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                    placeholder="Título"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Nome do monstro"
+                    required
                 />
             </div>
             
             <div className="form-input">
+                <label>Tamanho:</label>
                 <input
-                    value={imagem}
-                    onChange={(e) => setImagem(e.target.value)}
-                    placeholder="URL Imagem"
+                    value={size}
+                    onChange={(e) => setSize(e.target.value)}
+                    placeholder="Ex: Medium, Large"
+                    required
                 />
             </div>
             
             <div className="form-input">
+                <label>Tipo:</label>
+                <input
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                    placeholder="Ex: Dragon, Humanoid"
+                    required
+                />
+            </div>
+            
+            <div className="form-input">
+                <label>Vida (HP):</label>
                 <input
                     type="number"
-                    value={nota}
-                    onChange={(e) => setNota(Number(e.target.value))}
-                    placeholder="Nota"
+                    value={hitPoints}
+                    onChange={(e) => setHitPoints(Number(e.target.value))}
+                    required
                 />
             </div>
             

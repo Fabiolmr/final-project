@@ -10,12 +10,12 @@ export default async function Home() {
         <main className={styles.home}>
             <header className={styles.homeHeader}>
                 <div>
-                    <h1>Monstros</h1>
-                    <p>Gerencie seu inventário</p>
+                    <h1>Meu Bestiário</h1>
+                    <p>Gerencie seus monstros capturados</p>
                 </div>
 
                 <Link href="/monstros/criar" className={styles.btnAdd}>
-                    Caçar Monstro
+                    ⚔️ Criar Manualmente
                 </Link>
             </header>
             

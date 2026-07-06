@@ -1,18 +1,10 @@
 export interface Monster {
     id: number;
-    titulo: string;
-    imagem: string;
-    nota: number;
+    name: string;
+    size: string;
+    type: string;
+    hit_points: number;
 }
 
-export interface CreateMonsterDTO  {
-    titulo: string;
-    imagem: string;
-    nota: number;
-}
-
-export interface UpdateMonsterDTO  {
-    titulo?: string;
-    imagem?: string;
-    nota?: number;
-}
+export type CreateMonsterDTO = Omit<Monster, 'id'>;
+export type UpdateMonsterDTO = CreateMonsterDTO;
