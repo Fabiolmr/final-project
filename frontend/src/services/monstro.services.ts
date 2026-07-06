@@ -1,25 +1,20 @@
-import {Monster, CreateMonsterDTO, UpdateMonsterDTO} from "@/tipos/monstro";
+import { Monster, CreateMonsterDTO, UpdateMonsterDTO } from "@/tipos/monstro";
 
-const API_URL =
-  process.env.DATABASE_URL;
+const API_URL = process.env.DATABASE_URL;
 
-export async function getMonsters(): Promise<Monster[]>
-{
+export async function getMonsters(): Promise<Monster[]> {
     const response = await fetch(`${API_URL}/monstros`);
     const dados = await response.json();
     return dados;
-
 }
 
 export async function getMonster(id: string): Promise<Monster> {
-  const response = await fetch(`${API_URL}/monstros/${id}`);
-
-  return response.json();
+    const response = await fetch(`${API_URL}/monstros/${id}`);
+    return response.json();
 }
 
-export async function createMonsters(filme: CreateMonsterDTO): Promise<void>
-{
-    const response = await fetch(`${API_URL}/monstros`,{
+export async function createMonster(monstro: CreateMonsterDTO): Promise<void> {
+    const response = await fetch(`${API_URL}/monstros`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -28,14 +23,12 @@ export async function createMonsters(filme: CreateMonsterDTO): Promise<void>
     });
 
     if (!response.ok) {
-        throw new Error("Erro");
+        throw new Error("Erro ao criar monstro");
     }
 }
 
-
-export async function updateMonster(id: number, monstro: UpdateMonsterDTO): Promise<void>
-{
-    const response = await fetch(`${API_URL}/monstros/${id}`,{
+export async function updateMonster(id: number, monstro: UpdateMonsterDTO): Promise<void> {
+    const response = await fetch(`${API_URL}/monstros/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -44,13 +37,12 @@ export async function updateMonster(id: number, monstro: UpdateMonsterDTO): Prom
     });
 
     if (!response.ok) {
-        throw new Error("Erro");
+        throw new Error("Erro ao atualizar monstro");
     }
 }
 
-export async function deleteMonster(id: number): Promise<void>
-{
-    await fetch(`${API_URL}/monstros/${id}`,{
+export async function deleteMonster(id: number): Promise<void> {
+    await fetch(`${API_URL}/monstros/${id}`, {
         method: "DELETE",
     });
 }
