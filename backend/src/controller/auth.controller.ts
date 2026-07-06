@@ -7,10 +7,10 @@ export class AuthController{
 
     async create(req: Request,res: Response){    
         try{
-            const {email,senha} = req.body;
+            const {nome,email,senha} = req.body;
 
             //chama o service de criar
-            const user = await authService.create(email,senha);
+            const user = await authService.create(nome, email, senha);
 
             //retorna o usuário (id e email que retorna no service)
             res.status(201).json(user);
@@ -31,7 +31,7 @@ export class AuthController{
             const {email, senha} = req.body;
 
             //resposta recebe o token de sessão
-            const resposta = await authService.login(email,senha);
+            const resposta = await authService.login(email, senha);
             
             //por segurança, precisa manipular o token
             res.cookie("token", resposta.token,
