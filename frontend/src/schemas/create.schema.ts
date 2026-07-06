@@ -1,0 +1,12 @@
+import {email, z} from "zod";
+
+export const createSchema = z.object({
+    email: z.email("E-mail inválido"),
+    senha: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
+    confSenha: z.string()
+}).refine((d) => d.senha === d.confSenha, {
+    message: "Senhas não coincidem",
+    path: [
+        "confSenha"
+    ],
+})
