@@ -9,8 +9,8 @@ export default async function Header(){
         <header className='header'>
                 <nav>
                     <ul>
-                        <li><a href="https://www.youtube.com/shorts/_6HzLIJPH2A" target='_blank'>Sobre</a></li>| 
-                        <li><a href="https://www.youtube.com/watch?v=pkACVyU4PmA&list=RDpkACVyU4PmA&start_radio=1" target='_blank'>Página Oficial</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=q_i8WmC29tQ" target='_blank'>Sobre</a></li>| 
+                        <li><Link href="/">Página Oficial</Link></li>
                     </ul>
                 </nav>
                 <div>
