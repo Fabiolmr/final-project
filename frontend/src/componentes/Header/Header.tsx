@@ -1,19 +1,19 @@
 import "@/componentes/Header/Header.css";
+import Link from "next/link";
 
 export default async function Header(){
-
-  
     return(
         <header className='header'>
                 <nav>
                     <ul>
-                        <li><a href="https://www.youtube.com/shorts/_6HzLIJPH2A" target='_blank'>Sobre</a></li>| 
-                        <li><a href="https://www.youtube.com/watch?v=pkACVyU4PmA&list=RDpkACVyU4PmA&start_radio=1" target='_blank'>Página Oficial</a></li>
+                        <li><a href="{}">Sobre</a></li>| 
+                        <li><Link href="/" target='_blank'>Página Oficial</Link></li>
                     </ul>
                 </nav>
                 <div>
                     <ul>
-                        <li><a href="https://www.youtube.com/watch?v=99TjczXQB-g&list=RD99TjczXQB-g&start_radio=1" target='_blank'>Login</a></li> 
+                        {/* COlocar rota para login de usuario */}
+                        <li><Link href="/" target='_blank'>Login</Link></li> 
                     </ul>
                 </div>
         </header>
