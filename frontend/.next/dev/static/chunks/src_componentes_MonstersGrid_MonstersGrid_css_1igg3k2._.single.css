@@ -1,0 +1,10 @@
+/* [project]/src/componentes/MonstersGrid/MonstersGrid.css [app-client] (css) */
+.grid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  align-self: center;
+  align-items: center;
+  gap: 1.5rem;
+  display: grid;
+}
+
+/*# sourceMappingURL=src_componentes_MonstersGrid_MonstersGrid_css_1igg3k2._.single.css.map*/

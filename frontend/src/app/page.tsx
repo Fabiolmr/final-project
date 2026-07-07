@@ -1,4 +1,4 @@
-import MonsterGrid from "@/componentes/MonsterGrid/MonsterGrid";
+import MonsterGrid from "@/componentes/MonstersGrid/MonstersGrid";
 import { getMonsters } from "@/services/monstro.services";
 import Link from "next/link";
 import styles from '@/app/page.module.css';

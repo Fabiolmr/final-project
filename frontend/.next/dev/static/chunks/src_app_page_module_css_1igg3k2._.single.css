@@ -1,0 +1,45 @@
+/* [project]/src/app/page.module.css [app-client] (css) */
+.page-module___8aEwW__home {
+  min-width: 70rem;
+  max-width: 300rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-module___8aEwW__homeHeader {
+  background: #fff;
+  border-radius: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 30rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  display: flex;
+  box-shadow: 0 2px 8px #00000014;
+}
+
+.page-module___8aEwW__homeHeader h1 {
+  margin-bottom: .25rem;
+  font-size: 2.2rem;
+}
+
+.page-module___8aEwW__homeHeader p {
+  color: #a1a1a1;
+}
+
+.page-module___8aEwW__btnAdd {
+  color: #fff;
+  background: #0548ae;
+  border-radius: 8px;
+  height: 100%;
+  padding: .8rem 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
+.page-module___8aEwW__btnAdd:hover {
+  opacity: .9;
+}
+
+/*# sourceMappingURL=src_app_page_module_css_1igg3k2._.single.css.map*/

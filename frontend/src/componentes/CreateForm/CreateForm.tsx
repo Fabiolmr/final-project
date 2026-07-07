@@ -1,6 +1,6 @@
 "use client";
 
-import { createSchema } from "@/app/schemas/create.schema";
+import { createSchema } from "@/schemas/create.schema";
 import { create } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

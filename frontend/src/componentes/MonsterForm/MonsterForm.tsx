@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Monster } from "@/tipos/monstro";
 import {
-  createMonster,
+  createMonsters,
   updateMonster,
 } from "@/services/monstro.services"
 
@@ -13,19 +13,19 @@ interface Props {
   monstro?: Monster;
 }
 
-export default function MonsterForm({ filme }: Props) {
+export default function MonsterForm({ monstro }: Props) {
   const router = useRouter();
 
     const [titulo, setTitulo] = useState(
-    filme?.titulo ?? ""
+    monstro?.titulo ?? ""
     );
 
     const [imagem, setImagem] = useState(
-    filme?.imagem ?? ""
+    monstro?.imagem ?? ""
     );
 
     const [nota, setNota] = useState(
-    filme?.nota ?? 0
+    monstro?.nota ?? 0
     );
    
     async function handleSubmit( e: React.SyntheticEvent) {
@@ -37,10 +37,10 @@ export default function MonsterForm({ filme }: Props) {
             nota,
         };
 
-        if (filme) {
-            await updateMonster( filme.id, payload);
+        if (monstro) {
+            await updateMonster( monstro.id, payload);
         } else {
-            await createMonster(payload);
+            await createMonsters(payload);
         }
 
         router.push("/");
@@ -50,7 +50,7 @@ export default function MonsterForm({ filme }: Props) {
     return (
         <form onSubmit={handleSubmit} className="monster-form">
         <h1>
-        {filme
+        {monstro
             ? "Enfrentar Monstro"
             : "Novo Monstro"}
         </h1>

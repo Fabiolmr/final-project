@@ -20,9 +20,9 @@ export default function MonsterGrid({ monstros }: Props) {
     router.refresh();
   }
 
-  const monstrosMap = monstros.map((f) => {
+  const monstrosMap = monstros.map((m) => {
     return <MonsterCard 
-        key={f.id}
+        key={m.id}
         monstro={m}
         onDelete={handleDelete}
     />
