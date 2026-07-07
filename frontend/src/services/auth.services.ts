@@ -1,4 +1,4 @@
-import { LoginDTO, LoginResponse } from "@/tipos/auth";
+import { LoginDTO, CreateDTO, LoginResponse } from "@/tipos/auth";
 
 
 const API_URL =
@@ -25,7 +25,7 @@ export async function login(dados: LoginDTO) : Promise<LoginResponse>
 }
 
 
-export async function create(dados: LoginDTO): Promise<void>
+export async function create(dados: CreateDTO): Promise<void>
 {
     
     const response = await fetch(`${API_URL}/auth/create`,

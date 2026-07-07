@@ -1,6 +1,6 @@
 "use client";
 
-import { createSchema } from "@/app/schemas/create.schema";
+import { createSchema } from "@/schemas/create.schema";
 import { create } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -13,6 +13,7 @@ export default function CreateForm()
 
     const router = useRouter();
 
+    const [nome, setNome] = useState("");
     const [email, setEmail] =  useState("");
     const [senha, setSenha] =  useState("");
     const [confSenha,setConfSenha] = useState("");
@@ -23,6 +24,7 @@ export default function CreateForm()
         e.preventDefault();
         
         const result = createSchema.safeParse({
+            nome,
             email,
             senha,
             confSenha,
@@ -36,7 +38,7 @@ export default function CreateForm()
             return;
         }
         try {
-            await create({email,senha});
+            await create({nome, email,senha});
             toast.success("Usuário criado com sucesso");
             router.push('/login');  
         } catch (error) {
@@ -54,6 +56,15 @@ export default function CreateForm()
                 height={40}
                 className="logo-img"
             />
+            <div className="div-input">
+                <input 
+                type="nome" 
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                placeholder="Nome"
+                aria-label="Nome"
+                />
+            </div>
             <div className="div-input">
                 <input 
                 type="email" 

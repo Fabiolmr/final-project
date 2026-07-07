@@ -1,4 +1,6 @@
 import "@/componentes/Header/Header.css";
+import Link from "next/link";
+import LogoutButton from "../LogoutButton/LogoutButton";
 
 export default async function Header(){
 
@@ -13,7 +15,8 @@ export default async function Header(){
                 </nav>
                 <div>
                     <ul>
-                        <li><a href="https://www.youtube.com/watch?v=99TjczXQB-g&list=RD99TjczXQB-g&start_radio=1" target='_blank'>Login</a></li> 
+                        <li><Link href="/login">Login</Link></li>
+                        <li><LogoutButton/></li>
                     </ul>
                 </div>
         </header>
