@@ -5,10 +5,8 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function getMonsters(): Promise<Monster[]> {
     const response = await fetch(`${API_URL}/monstros`, { cache: 'no-store' });
 
-    //apenas para testes pois ainda não tem rota monstros
     if(!response.ok){
-        console.error("Rota ainda não implementada")
-        return []
+        throw new Error("Erro ao consultar monstros");
     }
 
     const dados = await response.json();
@@ -18,10 +16,8 @@ export async function getMonsters(): Promise<Monster[]> {
 export async function getMonster(id: string): Promise<Monster> {
     const response = await fetch(`${API_URL}/monstros/${id}`);
 
-    //apenas para testes pois ainda não tem rota monstros
     if(!response.ok){
-        console.error("Rota ainda não implementada")
-        return null;
+        throw new Error("Erro ao consultar monstro");
     }
 
     return response.json();

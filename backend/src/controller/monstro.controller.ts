@@ -36,8 +36,8 @@ export class MonstroController {
 
     async create(req: Request, res: Response) {
         try {
-            const { name, size, type, hit_points } = req.body;
-            const monstro = await monstroService.create(name, size, type, hit_points);
+            const dados = req.body;
+            const monstro = await monstroService.create(dados, res.locals.user.id);
             res.status(201).json(monstro);
         } catch (error) {
             res.status(400).json({

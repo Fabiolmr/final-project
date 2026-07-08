@@ -5,7 +5,7 @@ export default function Footer(){
     return(
         <footer className='footer'>
             <section>
-                <p style={{textAlign: "center"}}>Feito com 🎮 por <a href="https://www.github.com/phillcisco" target='_blank'>philcisco</a></p>
+                <p style={{textAlign: "center"}}><a href="" target='_blank'>tem que mudar isso aqui ein</a></p>
             </section>
         </footer>
     );

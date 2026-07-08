@@ -18,9 +18,15 @@ export class MonstroService {
         return monstro;
     }
 
-    async create(name: string, size: string, type: string, hit_points: number) {
+    async create(dados: {name: string, size: string, type: string, hit_points: number}, userId: number) {
         const monstro = await prisma.monster.create({
-            data: { name, size, type, hit_points },
+            data: {
+                name: dados.name,
+                size: dados.size,
+                type: dados.type,
+                hit_points: dados.hit_points,
+                userId: userId
+            },
         });
 
         return monstro;

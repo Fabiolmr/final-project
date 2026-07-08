@@ -32,9 +32,8 @@ export default function LoginForm()
 
             toast.success('Login Realizado');
 
-            router.push('/');
+            window.location.href = '/';
 
-            router.refresh();
         }catch{
             toast.error('Usuário ou senha inválidos');
         }
