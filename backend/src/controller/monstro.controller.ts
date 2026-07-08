@@ -7,7 +7,8 @@ export class MonstroController {
 
     async getAll(req: Request, res: Response) {
         try {
-            const monstros = await monstroService.getAll();
+            const userId = res.locals.user.id;
+            const monstros = await monstroService.getAll(userId);
             res.json(monstros);
         } catch (error) {
             res.status(400).json({
@@ -22,7 +23,8 @@ export class MonstroController {
     async getById(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
-            const monstro = await monstroService.getById(id);
+            const userId = res.locals.user.id;
+            const monstro = await monstroService.getById(id, userId);
             res.json(monstro);
         } catch (error) {
             res.status(404).json({
@@ -37,7 +39,8 @@ export class MonstroController {
     async create(req: Request, res: Response) {
         try {
             const dados = req.body;
-            const monstro = await monstroService.create(dados, res.locals.user.id);
+            const userId = res.locals.user.id;
+            const monstro = await monstroService.create(dados, userId);
             res.status(201).json(monstro);
         } catch (error) {
             res.status(400).json({
@@ -52,8 +55,9 @@ export class MonstroController {
     async update(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
+            const userId = res.locals.user.id;
             const { name, size, type, hit_points } = req.body;
-            const monstro = await monstroService.update(id, name, size, type, hit_points);
+            const monstro = await monstroService.update(id, name, size, type, hit_points, userId);
             res.json(monstro);
         } catch (error) {
             res.status(400).json({
@@ -68,7 +72,8 @@ export class MonstroController {
     async delete(req: Request, res: Response) {
         try {
             const id = Number(req.params.id);
-            await monstroService.delete(id);
+            const userId = res.locals.user.id;
+            await monstroService.delete(id, userId);
             res.status(204).send();
         } catch (error) {
             res.status(400).json({

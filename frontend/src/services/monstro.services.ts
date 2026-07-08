@@ -1,11 +1,26 @@
 import { Monster, CreateMonsterDTO, UpdateMonsterDTO } from "@/tipos/monstro";
+import { string } from "zod";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getMonsters(): Promise<Monster[]> {
-    const response = await fetch(`${API_URL}/monstros`, { cache: 'no-store' });
+export async function getMonsters(token?: string): Promise<Monster[]> {
+
+    const headers: HeadersInit = {
+        "Content-Type": "application/json"
+    };
+
+    if (token) {
+        headers["Cookie"] = `token=${token}`;
+    }
+
+    const response = await fetch(`${API_URL}/monstros`, {
+        cache: 'no-store',
+        headers: headers, 
+        credentials: "include"});
 
     if(!response.ok){
+        const errorMessage = await response.text(); 
+        console.error("Erro retornado pelo Back-end:", errorMessage);
         throw new Error("Erro ao consultar monstros");
     }
 
@@ -14,7 +29,7 @@ export async function getMonsters(): Promise<Monster[]> {
 }
 
 export async function getMonster(id: string): Promise<Monster> {
-    const response = await fetch(`${API_URL}/monstros/${id}`);
+    const response = await fetch(`${API_URL}/monstros/${id}`, {credentials: "include"});
 
     if(!response.ok){
         throw new Error("Erro ao consultar monstro");
@@ -26,6 +41,7 @@ export async function getMonster(id: string): Promise<Monster> {
 export async function createMonster(monstro: CreateMonsterDTO): Promise<void> {
     const response = await fetch(`${API_URL}/monstros`, {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
@@ -40,6 +56,7 @@ export async function createMonster(monstro: CreateMonsterDTO): Promise<void> {
 export async function updateMonster(id: number, monstro: UpdateMonsterDTO): Promise<void> {
     const response = await fetch(`${API_URL}/monstros/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },

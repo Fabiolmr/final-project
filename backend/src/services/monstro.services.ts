@@ -2,13 +2,15 @@ import { prisma } from "../prisma/client";
 
 export class MonstroService {
 
-    async getAll() {
-        return prisma.monster.findMany();
+    async getAll(userId: number) {
+        return prisma.monster.findMany({
+            where: { userId },
+        });
     }
 
-    async getById(id: number) {
-        const monstro = await prisma.monster.findUnique({
-            where: { id },
+    async getById(id: number, userId: number) {
+        const monstro = await prisma.monster.findFirst({
+            where: { id:id, userId: userId },
         });
 
         if (!monstro) {
@@ -32,32 +34,20 @@ export class MonstroService {
         return monstro;
     }
 
-    async update(id: number, name: string, size: string, type: string, hit_points: number) {
-        const existeMonstro = await prisma.monster.findUnique({
-            where: { id },
-        });
+    async update(id: number, name: string, size: string, type: string, hit_points: number, userId: number) {
+        const monster = await this.getById(id, userId)
 
-        if (!existeMonstro) {
-            throw new Error("Monstro não encontrado");
-        }
-
-        return prisma.monster.update({
-            where: { id },
-            data: { name, size, type, hit_points },
-        });
+            return prisma.monster.update({
+                where: { id: monster.id },
+                data: { name, size, type, hit_points },
+            })
     }
 
-    async delete(id: number) {
-        const existeMonstro = await prisma.monster.findUnique({
-            where: { id },
-        });
-
-        if (!existeMonstro) {
-            throw new Error("Monstro não encontrado");
-        }
+    async delete(id: number, userId: number) {
+        const monster = await this.getById(id, userId)
 
         await prisma.monster.delete({
-            where: { id },
+            where: { id: monster.id },
         });
     }
 }
