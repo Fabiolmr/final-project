@@ -21,7 +21,7 @@ export async function getMonster(id: string): Promise<Monster> {
     //apenas para testes pois ainda não tem rota monstros
     if(!response.ok){
         console.error("Rota ainda não implementada")
-        return null
+        return null;
     }
 
     return response.json();

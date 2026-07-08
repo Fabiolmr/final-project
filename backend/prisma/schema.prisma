@@ -15,3 +15,11 @@ model User {
 
   createdAt DateTime @default(now())
 }
+
+model Monster {
+  id         Int    @id @default(autoincrement())
+  name       String
+  size       String
+  type       String
+  hit_points Int
+}
