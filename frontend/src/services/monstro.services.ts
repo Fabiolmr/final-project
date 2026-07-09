@@ -28,8 +28,19 @@ export async function getMonsters(token?: string): Promise<Monster[]> {
     return dados;
 }
 
-export async function getMonster(id: string): Promise<Monster> {
-    const response = await fetch(`${API_URL}/monstros/${id}`, {credentials: "include"});
+export async function getMonster(id: string, token?: string): Promise<Monster> {
+    const headers: HeadersInit = {
+        "Content-Type": "application/json"
+    };
+
+    if (token) {
+        headers["Cookie"] = `token=${token}`;
+    }
+    const response = await fetch(`${API_URL}/monstros/${id}`, {
+        cache: 'no-store',
+        headers: headers,
+        credentials: "include"
+    });
 
     if(!response.ok){
         throw new Error("Erro ao consultar monstro");
@@ -71,6 +82,7 @@ export async function updateMonster(id: number, monstro: UpdateMonsterDTO): Prom
 export async function deleteMonster(id: number): Promise<void> {
     await fetch(`${API_URL}/monstros/${id}`, {
         method: "DELETE",
+        credentials: "include"
     });
 }
 
