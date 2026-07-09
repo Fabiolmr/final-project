@@ -1,51 +1,178 @@
-.login-form {
-  max-width: 300rem;
-  min-width: 40rem;
-  margin: 2rem auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.08);
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 1.25rem;
+/* Variáveis baseadas no seu MonsterForm.css */
+:root {
+    --bg-principal: #121214;
+    --bg-card: #1a1a1e;
+    --bg-input: #26262b;
+    --texto-claro: #f5f5f7;
+    --texto-mutado: #8f8f9d;
+    --dourado-dnd: #d4af37;
+    --dourado-hover: #aa8c2c;
+    --roxo-mistico: #a855f7;
+    --borda-suave: rgba(255, 255, 255, 0.05);
 }
 
-.logo-img{
+/* Estrutura Split Screen */
+.auth-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-principal);
+}
+
+/* Lado Esquerdo: Escuro com o Dragão */
+.auth-left {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    background-color: #0b0b0d; /* Cinza mais escuro */
+    text-align: center;
+    border-right: 1px solid var(--borda-suave);
+    position: relative;
+}
+
+.auth-logo {
     width: 100%;
-    display: block;
+    max-width: 260px;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.15));
+}
+
+.auth-left h1 {
+    color: var(--texto-claro);
+    font-size: 3.5rem;
+    font-weight: 800;
     margin-bottom: 1rem;
-
+    letter-spacing: -1px;
 }
 
-.div-input {
-  display: flex;
-  justify-content: center;
-  input{
-    padding-left: 0.3rem;
-    line-height: 1.2rem;
-    width: 50%;
-  }
-  gap: 0.4rem;
+.auth-left h1 span {
+    color: var(--dourado-dnd);
 }
 
-.login-form button {
-  padding: 0.85rem;
-  max-width: 20rem;
-  min-width: 10rem;
-  align-self: center;
-  border: none;
-  border-radius: 8px;
-  background: #0a8a01;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer; 
-  transition: opacity 0.2s;
+.auth-left p {
+    color: var(--texto-mutado);
+    font-size: 1.2rem;
+    max-width: 440px;
+    line-height: 1.6;
 }
 
-.login-form button:hover {
-  opacity: 0.9;
+/* Lado Direito: Tom mais claro e Formulário */
+.auth-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    background-color: var(--bg-principal); /* Cinza ligeiramente mais claro */
+}
+
+/* Customização interna dos formulários herdando o estilo do seu monster-form */
+.auth-right .login-form {
+    background-color: var(--bg-card);
+    border: 1px solid var(--borda-suave);
+    border-radius: 8px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.auth-right .login-form h2 {
+    color: var(--texto-claro);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.auth-right .div-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-right .div-input input {
+    background-color: var(--bg-input);
+    border: 1px solid var(--borda-suave);
+    border-radius: 6px;
+    color: var(--texto-claro);
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.auth-right .div-input input:focus {
+    outline: none;
+    border-color: var(--dourado-dnd);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Botão Entrar / Criar Conta em Tom Dourado */
+.auth-right .login-form button {
+    background-color: var(--dourado-dnd);
+    color: #121214;
+    border: none;
+    border-radius: 6px;
+    padding: 0.85rem;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.auth-right .login-form button:hover {
+    background-color: var(--dourado-hover);
+}
+
+.auth-right .login-form button:active {
+    transform: scale(0.98);
+}
+
+/* Links de troca de tela */
+.auth-switch-box {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.auth-switch-text {
+    color: var(--texto-mutado) !important; /* Sobrescreve o preto antigo */
+}
+
+.auth-switch-link {
+    color: var(--dourado-dnd);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.auth-switch-link:hover {
+    color: var(--texto-claro);
+    text-decoration: underline;
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 900px) {
+    .auth-container {
+        flex-direction: column;
+    }
+    .auth-left {
+        padding: 3rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--borda-suave);
+    }
+    .auth-right {
+        padding: 2rem 1.5rem;
+    }
 }
