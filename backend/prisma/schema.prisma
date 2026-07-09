@@ -14,4 +14,17 @@ model User {
   senha     String   
 
   createdAt DateTime @default(now())
+
+  monstros Monster[]
+}
+
+model Monster {
+  id         Int    @id @default(autoincrement())
+  name       String
+  size       String
+  type       String
+  hit_points Int
+
+  userId     Int
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

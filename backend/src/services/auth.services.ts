@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt" //biblioteca de criptografia de senha
 import { prisma } from "../prisma/client" //conexão com o prisma
 import jwt from "jsonwebtoken" //token de sessão
-import { getActiveResourcesInfo } from "node:process";
+
+//A parte service que interage diretamente com o prisma que comunica com o bd
 
 export class AuthService{
 
@@ -12,9 +13,7 @@ export class AuthService{
         });
 
         if(existeUser){
-            throw new Error(
-                "Email já está em uso"
-            )
+            throw new Error("Email já está em uso")
         }
 
         //cria senha versão hash com tempo "OK"
@@ -39,8 +38,9 @@ export class AuthService{
         }
     }
 
+
     async login(email: string, senha: string){
-        
+        //puxa usuário do bd    
         const user =  await prisma.user.findUnique({
             where: {email}
         });

@@ -4,4 +4,7 @@ node_modules/
 
 /src/generated/prisma
 
-.next/
+.next
+
+*.db
+*.db-journal

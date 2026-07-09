@@ -10,4 +10,4 @@ router.post("/login", authController.login);
 router.post("/logout",authController.logout);
 
 
-export {router as authRoutes};
+export {router as authRoutes}; //exporta rotas com o nome authRoutes

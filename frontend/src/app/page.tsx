@@ -2,23 +2,28 @@ import MonsterGrid from "@/componentes/MonstersGrid/MonstersGrid";
 import { getMonsters } from "@/services/monstro.services";
 import Link from "next/link";
 import styles from '@/app/page.module.css';
+import { cookies } from "next/headers";
 
 export default async function Home() {
-  const monstros = await getMonsters();
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
 
-  return (
-    <main className={styles.home}>
-      <header className={styles.homeHeader}>
-          <div>
-              <h1> Monstros </h1>
-              <p>Gerencie seu inventário</p>
-          </div>
+    const monstros = await getMonsters(token);
 
-          <Link href="/monstros/criar" className={styles.btnAdd}>
-           Caçar Monstro
-          </Link>
-      </header>
-      <MonsterGrid monstros={monstros} />
-    </main>
-  );
+    return (
+        <main className={styles.home}>
+            <header className={styles.homeHeader}>
+                <div>
+                    <h1>Meu Bestiário</h1>
+                    <p>Gerencie seus monstros capturados</p>
+                </div>
+
+                <Link href="/monstros/criar" className={styles.btnAdd}>
+                    ⚔️ Criar Manualmente
+                </Link>
+            </header>
+            
+            <MonsterGrid monstros={monstros} />
+        </main>
+    );
 }

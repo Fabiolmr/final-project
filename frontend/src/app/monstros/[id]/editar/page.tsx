@@ -1,6 +1,6 @@
 import MonsterForm from "@/componentes/MonsterForm/MonsterForm";
-import { getMonster, getMonsters } from "@/services/monstro.services";
-
+import { getMonster } from "@/services/monstro.services";
+import { cookies } from "next/headers";
 
 interface Props {
   params: Promise<{
@@ -8,12 +8,15 @@ interface Props {
   }>;
 }
 
-export default async function EditarFilmePage({
+export default async function EditarMonstroPage({
   params,
 }: Props) {
   const { id } = await params;
 
-  const monstro = await getMonster(id);
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token')?.value;
+
+  const monstro = await getMonster(id, token);
 
   return (
     <>

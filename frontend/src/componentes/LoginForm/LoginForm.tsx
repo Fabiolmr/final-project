@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import '@/componentes/LoginForm/LoginForm.css';
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LoginForm()
 {
@@ -31,9 +32,8 @@ export default function LoginForm()
 
             toast.success('Login Realizado');
 
-            router.push('/');
+            window.location.href = '/';
 
-            router.refresh();
         }catch{
             toast.error('Usuário ou senha inválidos');
         }
@@ -69,6 +69,10 @@ export default function LoginForm()
             </div>
 
             <button>Entrar</button>
+            <div>
+                <span style={{color:'black'}}>Ainda não tem um bestiário?</span>
+                <Link href="/create">Cadastre-se</Link>
+            </div>
         </form>
     )
 }

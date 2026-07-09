@@ -1,40 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { Monster } from "@/tipos/monstro"
+import { Monster } from "@/tipos/monstro";
 import '@/componentes/MonsterCard/MonsterCard.css';
-import Image from "next/image";
 
 interface MonsterCardProps {
-  monstro: Monster;
-  onDelete: (id: number) => void;
+    monstro: Monster;
+    onDelete: (id: number) => void;
 }
 
-export default function MonsterCard({ monstro, onDelete}: MonsterCardProps) {
-  return (
-    <div className="card">
+export default function MonsterCard({ monstro, onDelete }: MonsterCardProps) {
+    return (
+        <div className="card">
+            <h2>{monstro.name}</h2>
+            <p><strong>Tipo:</strong> {monstro.type} ({monstro.size})</p>
+            <p><strong>Vida (HP):</strong> ❤️ {monstro.hit_points}</p>
 
-      <Image
-        src={monstro.imagem}
-        alt={monstro.titulo} 
-        width={300}
-        height={450}
-        className="card-img"
-      />
+            <div className="btn-acoes">
+                <Link href={`/monstros/${monstro.id}/editar`}>
+                    Editar
+                </Link>
 
-      <h2>{monstro.titulo}</h2>
-
-      <p>⭐ {monstro.nota}</p>
-
-      <div className="btn-acoes">
-        <Link href={`/monstros/${monstro.id}/editar`}>
-          Editar
-        </Link>
-
-        <button onClick={() => onDelete?.(monstro.id)}>
-          Excluir
-        </button>
-      </div>
-    </div>
-  );
+                <button onClick={() => onDelete(monstro.id)}>
+                    Excluir
+                </button>
+            </div>
+        </div>
+    );
 }

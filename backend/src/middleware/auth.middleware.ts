@@ -18,7 +18,7 @@ export function authMidleware(req: Request, res: Response, next: NextFunction){
         
         res.locals.user = payload;
 
-        next();
+        next(); //chama a proxima função da rota
     }
     catch(error){
         res.status(400).json({

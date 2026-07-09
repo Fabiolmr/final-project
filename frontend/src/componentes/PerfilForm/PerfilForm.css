@@ -1,0 +1,134 @@
+.perfil-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Estilo padrão dos blocos brancos (Cards) */
+.perfil-card, .danger-zone {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+}
+
+.perfil-card h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.divisor {
+    border: none;
+    border-top: 1px solid #eaeaea;
+    margin: 2rem 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.4rem;
+}
+
+.form-group input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0070f3;
+}
+
+.campo-destaque input {
+    background-color: #f8fbff;
+    border-color: #b3d4fc;
+}
+
+/* Botões */
+.btn-salvar {
+    background-color: #0070f3;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.btn-salvar:hover {
+    background-color: #005bb5;
+}
+
+/* Área de Perigo */
+.danger-zone {
+    border-color: #ffcdd2;
+    background-color: #fff9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.danger-zone h3 {
+    margin: 0 0 0.5rem 0;
+    color: #d32f2f;
+}
+
+.danger-zone p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-deletar {
+    background-color: #d32f2f;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-deletar:hover {
+    background-color: #b71c1c;
+}
+
+/* Alertas */
+.alerta {
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.alerta.erro {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.alerta.sucesso {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}

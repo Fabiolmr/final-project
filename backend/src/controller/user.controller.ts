@@ -8,8 +8,9 @@ export class UserController{
 
     async update(req: Request, res: Response){
         try{
+            //puxa dados do corpo da req
             const dados = req.body
-
+            
             const userPayload = res.locals.user as AuthPayload;
             const id = userPayload.id; //pega id pelo cookie
 
@@ -32,6 +33,8 @@ export class UserController{
             const id = userPayload.id; //pega id pelo cookie
 
             const { senha } = req.body;
+
+            res.clearCookie("token");
 
             await userService.delete(id, senha);
             res.status(200).send();
