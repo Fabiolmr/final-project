@@ -15,6 +15,7 @@ export default async function Header(){
                 </nav>
                 <div>
                     <ul>
+                        <li><Link href="/perfil">Perfil</Link></li>
                         <li><Link href="/login">Login</Link></li>
                         <li><LogoutButton/></li>
                     </ul>

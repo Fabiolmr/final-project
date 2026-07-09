@@ -7,14 +7,15 @@ export function middleware(request: NextRequest) {
 
   const url = request.nextUrl.clone();
 
-  if (!token && url.pathname === '/') {
-    // Redireciona ele obrigatoriamente para a tela de login
-    return NextResponse.redirect(new URL('/login', request.url));
+  const rotas = ['/login', '/create']
+
+  if (token && rotas.includes(url.pathname)) {
+    return NextResponse.redirect(new URL('/', request.url));
   }
 
-  if (token && (url.pathname === '/login' || url.pathname === '/create')) {
+  if (!token && !rotas.includes(url.pathname)) {
     // Joga ele direto para a home, já que ele já está autenticado
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   // Se estiver tudo certo, permite que a navegação continue normalmente
@@ -23,5 +24,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Aqui dizemos para rodar na home e em qualquer sub-rota de monstros, mas ignorar arquivos estáticos e a API
-  matcher: ['/', '/login', '/create', '/monstros/:path*'],
+  matcher: ['/', '/login', '/create', '/perfil', '/monstros/:path*'],
 };

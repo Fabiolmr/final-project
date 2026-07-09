@@ -33,6 +33,8 @@ export class UserController{
 
             const { senha } = req.body;
 
+            res.clearCookie("token");
+
             await userService.delete(id, senha);
             res.status(200).send();
         }
