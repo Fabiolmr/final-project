@@ -5,6 +5,7 @@ export class UserService{
 
     async update(id: number, dados: {nome?:string, email?:string, novaSenha?: string, senhaAtual: string}){
         
+        //verifica usuário
         const existeUser =  await prisma.user.findUnique({
             where: {id}
         })
@@ -13,12 +14,14 @@ export class UserService{
             throw new Error("usuario não existe")
         }
 
+        //verifica se a senha bate
         const senhaMatch = await bcrypt.compare(dados.senhaAtual, existeUser.senha);
 
         if(!senhaMatch){
             throw new Error("Senha incorreta")
         }
 
+        //json para novos dados
         const novosDados: any = {}
 
         if(dados.nome){
@@ -33,6 +36,7 @@ export class UserService{
             novosDados.senha = await bcrypt.hash(dados.novaSenha, 10)
         }
 
+        //verificação de segurança se nenhum dado foi enviado
         if (Object.keys(novosDados).length === 0) {
             throw new Error("Nenhum dado novo foi enviado para atualização");
         }
@@ -71,7 +75,7 @@ export class UserService{
     async busca(id: number){
         const user = await prisma.user.findUnique({
             where: {id},
-            select: {
+            select: { /*seleciona quais informações do usuário vai retornar*/
                 nome: true,
                 email: true
             }

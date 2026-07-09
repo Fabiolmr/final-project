@@ -8,8 +8,9 @@ export class UserController{
 
     async update(req: Request, res: Response){
         try{
+            //puxa dados do corpo da req
             const dados = req.body
-
+            
             const userPayload = res.locals.user as AuthPayload;
             const id = userPayload.id; //pega id pelo cookie
 

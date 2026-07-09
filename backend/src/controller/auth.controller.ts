@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { AuthService } from "../services/auth.services";
 
-const authService = new AuthService();
+const authService = new AuthService(); //cria objeto para acessar o serviço de autenticação
+
+//controle que vê quais rotas estão sendo chamadas e em qual servico vai acessar
 
 export class AuthController{
 
     async create(req: Request,res: Response){    
         try{
+            //puxa dados do corpo da req
             const {nome,email,senha} = req.body;
 
             //chama o service de criar
@@ -28,6 +31,7 @@ export class AuthController{
 
     async login(req: Request,res: Response){
         try {
+            //puxa dados do corpo da req
             const {email, senha} = req.body;
 
             //resposta recebe o token de sessão

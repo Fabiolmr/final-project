@@ -1,7 +1,7 @@
 import express from "express";
 import cors from 'cors'
-import {authRoutes} from './routes/auth.routes';
 import cookieParser from 'cookie-parser';
+import {authRoutes} from './routes/auth.routes';
 import { userRoutes } from "./routes/user.routes";
 import { monstroRoutes } from "./routes/monstro.routes";
 
@@ -14,8 +14,8 @@ app.use(cors({
 }));
 
 app.use(cookieParser());
-app.use('/auth', authRoutes);
 
+app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/monstros', monstroRoutes);
 
