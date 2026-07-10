@@ -1,25 +1,52 @@
-import "@/componentes/Header/Header.css";
+"use client";
+
 import Link from "next/link";
-import LogoutButton from "../LogoutButton/LogoutButton";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { logoutAction } from "@/app/actions/auth"; // Importamos a action do servidor
+import "./Header.css";
 
-export default async function Header(){
+export default function Header() {
+  const router = useRouter();
 
-  
-    return(
-        <header className='header'>
-                <nav>
-                    <ul>
-                        <li><a href="https://www.youtube.com/watch?v=q_i8WmC29tQ" target='_blank'>Sobre</a></li>| 
-                        <li><Link href="/">Página Oficial</Link></li>
-                    </ul>
-                </nav>
-                <div>
-                    <ul>
-                        <li><Link href="/perfil">Perfil</Link></li>
-                        <li><Link href="/login">Login</Link></li>
-                        <li><LogoutButton/></li>
-                    </ul>
-                </div>
-        </header>
-    )
+  // Exemplo de nome (pode ser dinâmico depois)
+  const nomeUsuario = "Mestre da Campanha"; 
+
+  const handleLogout = async () => {
+    try {
+      // Chama a função do servidor para apagar o cookie com segurança
+      await logoutAction();
+      
+      toast.success("Você saiu da taverna com segurança!");
+      
+      // Empurra o usuário de volta para o login e limpa o cache de rotas
+      router.push("/login");
+      router.refresh();
+    } catch (error) {
+      toast.error("Erro ao tentar sair da taverna.");
+      console.error(error);
+    }
+  };
+
+  return (
+    <header className="main-header">
+      <div className="header-brand">
+        <Link href="/">
+          🐉 <span>Bestiário-X</span>
+        </Link>
+      </div>
+
+      <div className="header-actions">
+        <span className="user-name">Olá, <strong>{nomeUsuario}</strong></span>
+        
+        <Link href="/perfil" className="btn-header btn-profile">
+          🛡️ Perfil
+        </Link>
+        
+        <button onClick={handleLogout} className="btn-header btn-logout">
+          🚪 Sair
+        </button>
+      </div>
+    </header>
+  );
 }

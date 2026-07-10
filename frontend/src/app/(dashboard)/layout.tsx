@@ -7,10 +7,14 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      {children}
+      
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', width: '100%' }}>
+        {children}
+      </div>
+      
       <Footer />
-    </>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Monster } from "@/tipos/monstro";
 import { deleteMonster, fetchRandomDndMonster, createMonster } from "@/services/monstro.services";
 import MonsterCard from "../MonsterCard/MonsterCard";
+import Link from "next/link"; // Importamos o Link para o botão manual
 import '@/componentes/MonstersGrid/MonstersGrid.css';
 
 interface Props {
@@ -42,16 +43,31 @@ export default function MonsterGrid({ monstros }: Props) {
     }); 
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', width: '100%' }}>
-            <button 
-                onClick={handleGerarAleatorio} 
-                disabled={loading}
-                className="btn-gerar-aleatorio"
-                style={{ padding: '0.75rem 1.5rem', cursor: 'pointer', fontSize: '1rem' }}
-            >
-                {loading ? 'Invocando da API...' : '🎲 Invocar Monstro Aleatório'}
-            </button>
+        <div className="dashboard-wrapper">
+            <header className="dashboard-header">
+                
+                <div className="title-group">
+                    <h1>Meu Bestiário</h1>
+                    <p>Gerencie seus monstros capturados</p>
+                </div>
 
+                <div className="buttons-group">
+                    <Link href="/monstros/criar" className="btn-action btn-primary">
+                        ⚔️ Criar Manualmente
+                    </Link>
+                    
+                    <button 
+                        onClick={handleGerarAleatorio} 
+                        disabled={loading}
+                        className="btn-action btn-secondary"
+                    >
+                        {loading ? '⏳ Invocando da API...' : '🎲 Invocar Aleatório'}
+                    </button>
+                </div>
+
+            </header>
+
+            {/* Grid de Cards abaixo */}
             <div className="grid">
                 {monstrosMap}
             </div>
