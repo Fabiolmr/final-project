@@ -4,11 +4,13 @@
 
 O **Bestiário-X** é uma aplicação web completa e responsiva desenvolvida em **Next.js** e **TypeScript**, projetada para mestres e jogadores de Dungeons & Dragons gerenciarem suas criaturas. O projeto consome dados de uma API de D&D e oferece uma interface imersiva com uma estética sombria e mística baseada nos clássicos livros de RPG.
 
+<img width="1857" height="821" alt="image" src="https://github.com/user-attachments/assets/f95b4ad2-3586-4a9a-9a4d-6fdf0870f817" />
+
+
 ---
 
-## 🚀 Funcionalidades Principal
-![Dashboard do site]<img width="1855" height="890" alt="Captura de tela 2026-07-10 182442" src="https://github.com/user-attachments/assets/62175076-b22c-47c8-8730-04609453dcfe" />
-
+## 🚀 Funcionalidades Principais
+<img width="1855" height="890" alt="Captura de tela 2026-07-10 182442" src="https://github.com/user-attachments/assets/62175076-b22c-47c8-8730-04609453dcfe" />
 
 * **Guarda de Rotas (Server-Side):** Proteção nativa no servidor contra acessos não autenticados, redirecionando automaticamente invasores para a tela de login.
 * **Invocação Aleatória (🎲):** Mecânica para invocar monstros gerados aleatoriamente direto da API de D&D.
