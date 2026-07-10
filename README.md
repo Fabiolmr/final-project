@@ -7,6 +7,8 @@ O **Bestiário-X** é uma aplicação web completa e responsiva desenvolvida em 
 ---
 
 ## 🚀 Funcionalidades Principal
+![Dashboard do site]<img width="1855" height="890" alt="Captura de tela 2026-07-10 182442" src="https://github.com/user-attachments/assets/62175076-b22c-47c8-8730-04609453dcfe" />
+
 
 * **Guarda de Rotas (Server-Side):** Proteção nativa no servidor contra acessos não autenticados, redirecionando automaticamente invasores para a tela de login.
 * **Invocação Aleatória (🎲):** Mecânica para invocar monstros gerados aleatoriamente direto da API de D&D.
