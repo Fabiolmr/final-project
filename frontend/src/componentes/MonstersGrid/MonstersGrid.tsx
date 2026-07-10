@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Monster } from "@/tipos/monstro";
 import { deleteMonster, fetchRandomDndMonster, createMonster } from "@/services/monstro.services";
 import MonsterCard from "../MonsterCard/MonsterCard";
-import Link from "next/link"; // Importamos o Link para o botão manual
+import Link from "next/link";
 import '@/componentes/MonstersGrid/MonstersGrid.css';
 
 interface Props {

@@ -1,5 +1,5 @@
 .main-header {
-    background-color: #0b0b0d; /* Cinza bem escuro combinado */
+    background-color: #0b0b0d;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: 1rem 2rem;
     display: flex;
@@ -35,7 +35,6 @@
     color: #f5f5f7;
 }
 
-/* Botões em Dourado estilo Página Inicial */
 .btn-header {
     padding: 0.55rem 1rem;
     font-size: 0.85rem;

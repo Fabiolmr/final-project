@@ -60,7 +60,7 @@ export default function PerfilForm({ usuario }: Props){
         try {
             await deleteUser(senhaExclusao);
             toast.success("Conta excluída com sucesso.");
-            router.push("/login"); // Manda embora do sistema
+            router.push("/login");
         } catch (error) {
             toast.error(error instanceof Error ? error.message : "Erro ao excluir conta");
         }

@@ -7,12 +7,10 @@ export default async function PerfilPage() {
     const cookieStore = await cookies();
     const token = cookieStore.get('token')?.value;
 
-    // Se por algum motivo o token sumir, manda pro login
     if (!token) {
         redirect('/login');
     }
 
-    // Busca os dados atuais do usuário logado
     const userProfile = await getUser(token);
 
     return (
@@ -20,7 +18,6 @@ export default async function PerfilPage() {
             <h1>Configurações da Conta</h1>
             <p>Gerencie suas informações pessoais e credenciais.</p>
             
-            {/* Injeta os dados do backend no componente visual */}
             <PerfilForm usuario={userProfile} />
         </main>
     );

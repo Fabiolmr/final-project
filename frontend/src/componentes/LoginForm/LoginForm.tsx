@@ -37,7 +37,6 @@ export default function LoginForm()
 
     return (
         <div className="auth-container">
-            {/* Lado Esquerdo - Título e Logo de DnD */}
             <div className="auth-left">
                 <img 
                     src="https://logos-world.net/wp-content/uploads/2021/12/DnD-Emblem.png" 
@@ -48,7 +47,6 @@ export default function LoginForm()
                 <p>Organize seu bestiário e crie seus próprios monstros para sua campanha!</p>
             </div>
 
-            {/* Lado Direito - O Formulário atualizado */}
             <div className="auth-right">
                 <form onSubmit={handleSubmit} className="login-form">
                     <h2>Entrar na Campanha</h2>

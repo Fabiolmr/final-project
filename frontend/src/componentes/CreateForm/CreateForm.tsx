@@ -44,7 +44,6 @@ export default function CreateForm()
 
     return (
         <div className="auth-container">
-            {/* Lado Esquerdo - Mantém a consistência visual */}
             <div className="auth-left">
                 <img 
                     src="https://logos-world.net/wp-content/uploads/2021/12/DnD-Emblem.png" 
@@ -55,7 +54,6 @@ export default function CreateForm()
                 <p>Organize seu bestiário e crie seus próprios monstros para sua campanha!</p>
             </div>
 
-            {/* Lado Direito - Formulário de Cadastro */}
             <div className="auth-right">
                 <form onSubmit={handleSubmit} className="login-form">
                     <h2>Criar Cadastro</h2>

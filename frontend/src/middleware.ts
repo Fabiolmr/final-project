@@ -14,15 +14,12 @@ export function middleware(request: NextRequest) {
   }
 
   if (!token && !rotas.includes(url.pathname)) {
-    // Joga ele direto para a home, já que ele já está autenticado
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Se estiver tudo certo, permite que a navegação continue normalmente
   return NextResponse.next();
 }
 
 export const config = {
-  // Aqui dizemos para rodar na home e em qualquer sub-rota de monstros, mas ignorar arquivos estáticos e a API
   matcher: ['/', '/login', '/create', '/perfil', '/monstros/:path*'],
 };

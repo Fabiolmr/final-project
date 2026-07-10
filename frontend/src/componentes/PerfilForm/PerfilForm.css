@@ -5,7 +5,6 @@
     margin-top: 2rem;
 }
 
-/* Estilo padrão dos blocos brancos (Cards) */
 .perfil-card, .danger-zone {
     background: #ffffff;
     border-radius: 12px;
@@ -58,7 +57,6 @@
     border-color: #b3d4fc;
 }
 
-/* Botões */
 .btn-salvar {
     background-color: #0070f3;
     color: white;
@@ -77,7 +75,6 @@
     background-color: #005bb5;
 }
 
-/* Área de Perigo */
 .danger-zone {
     border-color: #ffcdd2;
     background-color: #fff9fa;
@@ -114,7 +111,6 @@
     background-color: #b71c1c;
 }
 
-/* Alertas */
 .alerta {
     padding: 1rem;
     border-radius: 8px;
