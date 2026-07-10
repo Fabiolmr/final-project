@@ -24,13 +24,27 @@ export class UserService{
         //json para novos dados
         const novosDados: any = {}
 
-        if(dados.nome){
-            novosDados.nome = dados.nome;
+
+        if (dados.email) {
+            const emailEmUso = await prisma.user.findUnique({
+                where: { email: dados.email }
+            });
+        
+            if (emailEmUso && emailEmUso.id !== id) {
+                throw new Error("Este e-mail já está em uso por outro usuário.");
+            }
+            novosDados.email = dados.email;
         }
 
-        if(dados.email){
-            novosDados.email = dados.email;
-        }        
+        if (dados.nome) {
+            const nomeEmUso = await prisma.user.findUnique({
+                where: { nome: dados.nome }
+            });
+            if (nomeEmUso && nomeEmUso.id !== id) {
+                throw new Error("Este nome de usuário já está em uso.");
+            }
+            novosDados.nome = dados.nome;
+        }   
 
         if(dados.novaSenha){
             novosDados.senha = await bcrypt.hash(dados.novaSenha, 10)

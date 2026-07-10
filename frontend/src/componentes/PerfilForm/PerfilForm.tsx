@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UserProfile } from "@/tipos/user";
 import {  deleteUser, updateUser} from "@/services/user.services";
+import { perfilSchema } from '@/schemas/perfil.schema';
+import { toast } from 'sonner';
 
 interface Props {
     usuario: UserProfile;
@@ -18,17 +20,15 @@ export default function PerfilForm({ usuario }: Props){
     const [novaSenha, setNovaSenha] = useState("");
     const [senhaAtual, setSenhaAtual] = useState("");
 
-    // Estados de feedback visual para o usuário
-    const [erro, setErro] = useState("");
-    const [sucesso, setSucesso] = useState("");
-
     async function handleUpdate(e: React.SyntheticEvent) {
         e.preventDefault();
-        setErro("");
-        setSucesso("");
+        
+        const result = perfilSchema.safeParse({
+            nome, email, novaSenha, senhaAtual
+        })
 
-        if (!senhaAtual) {
-            setErro("A senha atual é obrigatória para salvar as alterações.");
+        if (!result.success) {
+            toast.error(result.error.issues[0].message);
             return;
         }
 
@@ -40,13 +40,13 @@ export default function PerfilForm({ usuario }: Props){
                 senhaAtual
             });
             
-            setSucesso("Perfil atualizado com sucesso!");
+            toast.success("Perfil atualizado com sucesso")
             setSenhaAtual("");
             setNovaSenha("");
             router.refresh();
             
         } catch (error) {
-            setErro(error instanceof Error ? error.message : "Erro ao atualizar");
+            toast.error(error instanceof Error ? error.message : "Erro ao atualizar");
         }
     }
     
@@ -59,20 +59,16 @@ export default function PerfilForm({ usuario }: Props){
         
         try {
             await deleteUser(senhaExclusao);
-            alert("Conta excluída com sucesso.");
+            toast.success("Conta excluída com sucesso.");
             router.push("/login"); // Manda embora do sistema
         } catch (error) {
-            alert(error instanceof Error ? error.message : "Erro ao excluir conta");
+            toast.error(error instanceof Error ? error.message : "Erro ao excluir conta");
         }
     }
     
     
     return (
         <div className="perfil-container">
-
-            {erro && <div className="alerta erro">{erro}</div>}
-            {sucesso && <div className="alerta sucesso">{sucesso}</div>}
-
             <form onSubmit={handleUpdate} className="perfil-card">
                 <h2>Informações Básicas</h2>
                 
